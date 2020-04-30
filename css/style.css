@@ -11358,18 +11358,6 @@ hr {
 .level:not(:last-child) {
   margin-bottom: 0.5rem;
 }
-.post-navigation .level {
-  margin-bottom: 1rem;
-}
-.text-right {
-  text-align: right;
-}
-.text-left {
-  text-align: left;
-}
-.font1_1 {
-  font-size: 1.1rem;
-}
 .night {
   color: #c0c0c0 !important;
   background-color: #000;
