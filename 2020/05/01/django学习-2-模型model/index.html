@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>django学习(2)-模型module - AlwaysOnliner</title><meta description="java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"><meta property="og:type" content="blog"><meta property="og:title" content="AlwaysOnliner"><meta property="og:url" content="https://github.com/liul12138"><meta property="og:site_name" content="AlwaysOnliner"><meta property="og:description" content="java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"><meta property="article:published_time" content="2020-05-01T00:15:12.000Z"><meta property="article:modified_time" content="2020-05-01T12:51:06.578Z"><meta property="article:author" content="MingLiu"><meta property="article:tag" content="categories-java"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/liul12138"},"headline":"AlwaysOnliner","image":["https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"],"datePublished":"2020-05-01T00:15:12.000Z","dateModified":"2020-05-01T12:51:06.578Z","author":{"@type":"Person","name":"liul12138"},"description":"java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"}</script><link rel="alternative" href="/atom.xml" title="AlwaysOnliner" type="application/atom+xml"><link rel="icon" href="https://cdn.jsdelivr.net/gh/removeif/removeif.github.io@latest/img/wico.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><link rel="stylesheet" href="/css/style.css"><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="/js/globalUtils.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script></head><body class="is-2-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/253fcdc7d85d2f828406ba4ad35db96f.png" alt="AlwaysOnliner" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/media">影音</a><a class="navbar-item" href="/album">相册</a><a class="navbar-item" href="/self-talking">碎碎念</a><a class="navbar-item" href="/message">留言</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2020-05-01T00:15:12.000Z">2020-05-01</time><a class="commentCountImg" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/#comment-container"><span class="display-none-class">5c071e26cf00ad7a7c9969fef1cb072b</span><img class="not-gallery-item" src="/img/chat.svg"> <span class="commentCount" id="5c071e26cf00ad7a7c9969fef1cb072b"> 99+</span>    </a><span class="level-item">7 分钟 读完 (大约 987 个字)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">django学习(2)-模型module</h1><div class="content"><blockquote>
+<p><strong>model</strong>是django框架中负责与数据库中进行交互的一部分,在学习的过程中我主要以重构个人blog为驱动</p>
+</blockquote>
+<ul>
+<li>Django模型类<br>Django根据属性的类型确定以下信息:</li>
+</ul>
+<ol>
+<li>当前选择的数据库支持字段的类型</li>
+<li>渲染管理表单时使用的默认html控件</li>
+<li>在管理站点最低限度的验证<br>django会为表创建自动增长的主键列，每个模型只能有一个主键列，如果使用选项设置某属性为主键列后django不会再创建自动增长的主键列。<br><br>默认创建的主键列属性为id，可以使用pk代替，pk全拼为primary key。</li>
+</ol>
+<ul>
+<li><p>字段类型</p>
+<p>  引入Django.db.models包</p>
+<ul>
+<li>AutoField：自动增长的IntegerField，通常不用指定，不指定时Django会自动创建属性名为id的自动增长属性。</li>
+<li>BooleanField</li>
+<li>textField：大文本字段，一般超过4000个字符时使用。</li>
+<li>IntegerField：整数。</li>
+<li>CharField(max_length=字符长度)：字符串。</li>
+<li>DecimalField(max_digits=None, decimal_places=None)：十进制浮点数。<ul>
+<li>参数max_digits表示总位数。</li>
+<li>参数decimal_places表示小数位数。</li>
+</ul>
+</li>
+<li>FloatField：浮点数</li>
+<li>DateField[auto_now=False, auto_now_add=False])：日期。<ul>
+<li>参数auto_now表示每次保存对象时，自动设置该字段为当前时间，用于”最后一次修改”的时间戳，它总是使用当前日期，默认为false。</li>
+<li>参数auto_now_add表示当对象第一次被创建时自动设置当前时间，用于创建的时间戳，它总是使用当前日期，默认为false。</li>
+</ul>
+</li>
+<li>TimeField,DateTimeField,FileField,ImageField</li>
+</ul>
+</li>
+<li><p>选项</p>
+<pre><code>![](https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/01/746471ab9c0ae172a3f1efc25540741a.png)</code></pre><h4 id="以我个人博客为例"><a href="#以我个人博客为例" class="headerlink" title="以我个人博客为例"></a>以我个人博客为例</h4><p>给博客定义了文章,标签,目录三个模型类</p>
+</li>
+<li><p>注意的点有几个</p>
+<ul>
+<li>在关联类中,所涉及的四个类型,均在文章定义类中有出现</li>
+</ul>
+<ol>
+<li>ForeignKey：一对多，将字段定义在多的一端中。</li>
+<li>ManyToManyField：多对多，将字段定义在任意一端中。</li>
+<li>OneToOneField：一对一，将字段定义在任意一端中。</li>
+<li>可以维护递归的关联关系，使用’self’指定，详见”自关联”。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line"># Create your models here.</span><br><span class="line">class ArticleInfo(models.Model):</span><br><span class="line">    ArticleTittle&#x3D;models.CharField(max_length&#x3D;20)</span><br><span class="line">    ArticleAuthor&#x3D;models.CharField(max_length&#x3D;10)</span><br><span class="line">    ArticleContent&#x3D;models.DateTimeField(auto_now_add&#x3D;True)</span><br><span class="line">    ArticleComment&#x3D;models.CharField(max_length&#x3D;20)</span><br><span class="line">    ArticleCount&#x3D;models.IntegerField()</span><br><span class="line">    isDelete&#x3D;models.BooleanField(default&#x3D;False)</span><br><span class="line">    ArticleTag&#x3D;models.ManyToManyField(&#39;Tag&#39;,on_delete&#x3D;models.CASCADE)</span><br><span class="line">    ArticlePic&#x3D;models.CharField(max_length&#x3D;70)</span><br><span class="line">    ArticleCategory&#x3D;models.ForeignKey(&#39;Category&#39;, on_delete&#x3D;models.CASCADE)</span><br><span class="line">    ArticleParent&#x3D;models.ForeignKey(&#39;self&#39;, null&#x3D;True, blank&#x3D;True , on_delete&#x3D;models.CASCADE)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        &quot;&quot;&quot;定义元类&quot;&quot;&quot;</span><br><span class="line">        verbose_name&#x3D;&#39;文章&#39;  #文章tag类</span><br><span class="line">        verbose_name_plural&#x3D;verbose_name  #复数形式</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.ArticleTittle</span><br><span class="line"></span><br><span class="line">class Tag(models.Model):</span><br><span class="line">    #定义标签类,为每篇文章添加tag</span><br><span class="line">    TagName&#x3D;models.CharField(max_length&#x3D;10)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        verbose_name &#x3D; &#39;标签&#39;</span><br><span class="line">        verbose_name_plural &#x3D; verbose_name</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.TagName</span><br><span class="line">class Category(models.Model):</span><br><span class="line"></span><br><span class="line">    CategoryName &#x3D; models.CharField(max_length&#x3D;20)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        verbose_name &#x3D; &#39;分类&#39;</span><br><span class="line">        verbose_name_plural &#x3D; verbose_name</span><br><span class="line"></span><br><span class="line">    def __str__(self):</span><br><span class="line">        return self.CategoryName</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意点2:在最新的版本中出现,必须要为关联函数添加on_delete项参数,这一点详见<a href="https://blog.csdn.net/kuangshp128/article/details/78946316">on_delete的详细说明</a></li>
+<li>注意点3:更改默认数据库为mysql的步骤<ol>
+<li>安装MySQL,熟悉其基本操作</li>
+<li>安装pymysql,更新model<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br><span class="line">pip upgrade install --upgrade mysqlclient</span><br></pre></td></tr></table></figure></li>
+<li>setting.py中做database配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">&#39;default&#39;: &#123;</span><br><span class="line">    &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,</span><br><span class="line">    &#39;NAME&#39;: &#39;blog_v1&#39;,#数据库名称</span><br><span class="line">    &#39;USER&#39;:&#39;root&#39;,#user name</span><br><span class="line">    &#39;PASSWORD&#39;: &#39;vae20000608&#39;, #数据库登录密码</span><br><span class="line">    &#39;HOST&#39;: &#39;localhost&#39;, #数据库所在主机</span><br><span class="line">    &#39;PORT&#39;: &#39;3306&#39;, #数据库端口</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在项目应用目录下添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+在执行完上述配置后,进行模型迁移<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigration</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+在MySQL中查询发现完成迁移</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/01/40c68eb639fa7d52b477e444eb3131ec.png" alt=""></p>
+<p>查询一下数据发现操作成功<br><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/01/3b0625ee34b7d85f66a58b665ed0f39d.png" alt=""></p>
+</div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://liul12138.github.io/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/">django学习(2)-模型module</a></li><li><strong>本文作者：</strong><a href="http://liul12138.github.io">mingliu</a></li><li><strong>本文链接：</strong><a href="http://liul12138.github.io/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/">http://liul12138.github.io/2020/05/01/django学习-2-模型model/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li></ul><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/" target="_blank">JavaScript中的高阶函数</a><br></span><span>  2.<a class="is-size-6" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/" target="_blank">django学习(1)-简介</a><br></span><span>  3.<a class="is-size-6" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/" target="_blank">django学习(2)-模型module</a><br></span></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/zhifubao.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/weixin.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/"><span class="level-item">django学习(1)-简介</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css"><script src="/js/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: '5c071e26cf00ad7a7c9969fef1cb072b',
+            repo: 'gittalk',
+            owner: 'liul12138',
+            clientID: '101dfba7cff3d5f55d0a',
+            clientSecret: '9e52fecc777117fa6ade0a02fa591a068c3ce598',
+            admin: ["liul12138"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget toc-scroll" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" id="toc-item-以我个人博客为例" href="#以我个人博客为例"><span>以我个人博客为例</span></a></li></ul></div></div><script type="text/javascript" async>
+        $(document).ready(function () { //参考自 https://github.com/ppoffice/hexo-theme-icarus/pull/616/files
+            var observerTopMargin;
+            var scrollObserver;
+            var headerElems = $(".headerlink");
+            var activeTocItem;
+        
+            function initIntersectionObserver(docHeight) {
+                observerTopMargin = docHeight;
+                scrollObserver = new IntersectionObserver(scrollCallBack,
+                    {
+                        root: null,  // viewpoint
+                        rootMargin: docHeight + "px 0px -80% 0px"  // cover top 30% of viewport to the top of document
+                    })
+            }
+        
+            function scrollCallBack(entries, observer) {
+                if ($(window).scrollTop() > observerTopMargin * 0.7) { 
+                    // User somehow scroll to 70% of observerTopMargin (which is inited as 200% document height)
+                    // Observer top margin need to extend to cover all the space to the top of the document
+                    initIntersectionObserver(observerTopMargin * 2)
+                    observer.disconnect();
+                    return;
+                }
+                let toActive;
+                if (entries[0].intersectionRatio == 1) {  // enter viewed area
+                    let entry = entries.reduce((u, v) => (u.target.toc_id > v.target.toc_id ? u : v));  // get the lowest item
+                    toActive = $("#toc-item-" + $(entry.target).attr("href").substr(1));
+                } else {
+                    let entry = entries.reduce((u, v) => (u.target.toc_id < v.target.toc_id ? u : v));  // get the highest item
+                    let idx = Math.max(entry.target.toc_id - 1, 0);
+                    toActive = $("#toc-item-" + $(headerElems[idx]).attr("href").substr(1));
+                }
+                if (activeTocItem) activeTocItem.removeClass("is-current");
+                activeTocItem = toActive
+                activeTocItem.addClass("is-current");
+            }
+        
+            initIntersectionObserver($(document).height() * 2);
+            headerElems.each(function (index, obj) {
+                obj.toc_id = index;
+                scrollObserver.observe(obj);
+            })
+        });</script></div><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="is-rounded" src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png" alt="Ming Liu"></figure><p class="title is-size-4 is-block line-height-inherit">Ming Liu</p><p class="is-size-6 is-block">EE Student (UESTC)</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chengdu Sichuan</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://weibo.com/u/3050419984" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/liul12138"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/5286437859"><i class="fab  fa-weibo"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="知乎" href="https://www.zhihu.com/people/liu-liu-liu-12138-20"><i class="fab fa-wpforms"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="QQ" href="https://telegram.com"><i class="fab  fa-qq"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content size-small"><p><time dateTime="2020-05-01T00:15:12.000Z">2020-05-01</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/">django学习(2)-模型module</a></p><p class="is-uppercase"></p></div></article><article class="media"><a class="media-left" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/"><p class="image is-64x64"><img class="thumbnail" src="/images/thumbnail2.jpg" alt="django学习(1)-简介"></p></a><div class="media-content size-small"><p><time dateTime="2020-04-30T09:32:57.000Z">2020-04-30</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/">django学习(1)-简介</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/python/">python</a></p></div></article><article class="media"><a class="media-left" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"><p class="image is-64x64"><img class="thumbnail" src="/images/thumbnail1.jpg" alt="JavaScript中的高阶函数"></p></a><div class="media-content size-small"><p><time dateTime="2020-04-30T05:17:19.000Z">2020-04-30</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">JavaScript中的高阶函数</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-04-29T04:19:04.000Z">2020-04-29</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/29/my-blog/">my_blog</a></p><p class="is-uppercase"></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-04-29T03:48:41.103Z">2020-04-29</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/29/hello-world/">Hello World</a></p><p class="is-uppercase"></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/python/"><span class="level-start"><span class="level-item">python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">前端</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/javascript/"><span class="tag">javascript</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/253fcdc7d85d2f828406ba4ad35db96f.png" alt="AlwaysOnliner" height="28"></a><p class="size-small"><span>&copy; 2020 mingliu</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a><br>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br>    方便于网友与自己学习交流，如有侵权,请联系处理处理]<br><script type="text/javascript" src="/js/statistics.js"></script><span id="statistic-times"></span><br></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://liul12138.github.io',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back-to-top.js" defer></script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script src="/js/gallery.js" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/js/comment-issue-data.js" defer></script><link rel="stylesheet" href="/css/insight.css"><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"></div></div></div></div><script>(function (window) {
+            var INSIGHT_CONFIG = {
+                TRANSLATION: {
+                    POSTS: '文章',
+                    PAGES: '页面',
+                    CATEGORIES: '分类',
+                    TAGS: '标签',
+                    UNTITLED: '(无标题)',
+                },
+                CONTENT_URL: '/content.json',
+            };
+            window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+        })(window);</script><script src="/js/insight.js" defer></script></body></html>
