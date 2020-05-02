@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>初识numpy - AlwaysOnliner</title><meta description="java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"><meta property="og:type" content="blog"><meta property="og:title" content="AlwaysOnliner"><meta property="og:url" content="https://github.com/liul12138"><meta property="og:site_name" content="AlwaysOnliner"><meta property="og:description" content="java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"><meta property="article:published_time" content="2020-05-02T08:25:53.000Z"><meta property="article:modified_time" content="2020-05-02T08:32:01.815Z"><meta property="article:author" content="MingLiu"><meta property="article:tag" content="categories-java"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/liul12138"},"headline":"AlwaysOnliner","image":["https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png"],"datePublished":"2020-05-02T08:25:53.000Z","dateModified":"2020-05-02T08:32:01.815Z","author":{"@type":"Person","name":"liul12138"},"description":"java,技术分享,后端开发,支付框架,数据接口,算法,leetcode"}</script><link rel="alternative" href="/atom.xml" title="AlwaysOnliner" type="application/atom+xml"><link rel="icon" href="https://cdn.jsdelivr.net/gh/removeif/removeif.github.io@latest/img/wico.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><link rel="stylesheet" href="/css/style.css"><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="/js/globalUtils.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script></head><body class="is-2-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/253fcdc7d85d2f828406ba4ad35db96f.png" alt="AlwaysOnliner" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/media">影音</a><a class="navbar-item" href="/album">相册</a><a class="navbar-item" href="/self-talking">碎碎念</a><a class="navbar-item" href="/message">留言</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="thumbnail" src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/02/c00730f424f68925e4cc23ef05351205.png" alt="初识numpy"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2020-05-02T08:25:53.000Z">2020-05-02</time><a class="commentCountImg" href="/2020/05/02/%E5%88%9D%E8%AF%86numpy/#comment-container"><span class="display-none-class">20dcf689e428ed46a47522fa86be5f34</span><img class="not-gallery-item" src="/img/chat.svg"> <span class="commentCount" id="20dcf689e428ed46a47522fa86be5f34"> 99+</span>    </a><span class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/python-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">python 机器学习</a></span><span class="level-item">2 分钟 读完 (大约 280 个字)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">初识numpy</h1><div class="content"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(a)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>numpy.ndarray</code></pre><h4 id="生成指定维数的随机多为数据"><a href="#生成指定维数的随机多为数据" class="headerlink" title="生成指定维数的随机多为数据"></a>生成指定维数的随机多为数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.random.rand(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0.35352104, 0.6165823 , 0.42097802, 0.21503512],
+       [0.60753175, 0.43145459, 0.26937949, 0.56143926],
+       [0.32406546, 0.9922783 , 0.33465788, 0.89539713]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.random.randint(<span class="number">-1</span>,<span class="number">5</span>,size=(<span class="number">3</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 2,  0,  2,  4],
+       [ 4,  3, -1,  2],
+       [ 2,  3,  2,  2]])</code></pre><h4 id="生成指定维度大小（3行4列）的随机多维整型数据（二维），randint-可以指定区间（-1-5）"><a href="#生成指定维度大小（3行4列）的随机多维整型数据（二维），randint-可以指定区间（-1-5）" class="headerlink" title="生成指定维度大小（3行4列）的随机多维整型数据（二维），randint()可以指定区间（-1, 5）"></a>生成指定维度大小（3行4列）的随机多维整型数据（二维），randint()可以指定区间（-1, 5）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.random.uniform(<span class="number">-1</span>,<span class="number">5</span>,(<span class="number">3</span>,<span class="number">4</span>))<span class="comment">#生成指定位数的随机浮点型数据</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 4.02759409, -0.35544569, -0.25476112,  2.56202748],
+       [ 0.00717535,  3.52806175,  0.53265671,  4.58275286],
+       [-0.62130975,  4.11340699,  0.16998171,  4.12237009]])</code></pre><ul>
+<li>维度个数</li>
+<li>维度大小</li>
+<li>数据类型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.ndim</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>2</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(3, 4)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.dtype</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>dtype(&apos;float64&apos;)</code></pre><h3 id="ndarray的数据创建"><a href="#ndarray的数据创建" class="headerlink" title="ndarray的数据创建"></a>ndarray的数据创建</h3><blockquote>
+<ol>
+<li>np.array(collection)</li>
+</ol>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># list序列转换为ndarray序列对象(list)</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.array(range(<span class="number">1</span>,<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.ndim</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(9,)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.array([range(<span class="number">0</span>,<span class="number">9</span>),range(<span class="number">0</span>,<span class="number">9</span>)])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0, 1, 2, 3, 4, 5, 6, 7, 8],
+       [0, 1, 2, 3, 4, 5, 6, 7, 8]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(arr)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>numpy.ndarray</code></pre><h4 id="其他常用的命令"><a href="#其他常用的命令" class="headerlink" title="其他常用的命令"></a>其他常用的命令</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr=np.arange(<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reshape(<span class="number">3</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reshape(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[[ 0,  1,  2,  3,  4],
+        [ 5,  6,  7,  8,  9],
+        [10, 11, 12, 13, 14]]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">1</span>,<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.random.shuffle(arr)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 7,  6,  0,  1, 10,  8,  5,  3, 11,  9,  2,  4, 14, 13, 12])</code></pre><p>np.random.shuffle()将打乱数组序列</p>
+<ul>
+<li>矢量运算,数组相乘相加</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr=np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">             [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr*arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 1,  4,  9],
+       [16, 25, 36]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr+arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[ 2,  4,  6],
+       [ 8, 10, 12]])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = np.array( [[[  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],               <span class="comment"># a 3D array (two stacked 2D arrays)</span></span><br><span class="line">                 [ <span class="number">10</span>, <span class="number">12</span>, <span class="number">13</span>]],</span><br><span class="line">                [[<span class="number">100</span>,<span class="number">101</span>,<span class="number">102</span>],</span><br><span class="line">                 [<span class="number">110</span>,<span class="number">112</span>,<span class="number">113</span>]]])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> c:</span><br><span class="line">    print(row)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[ 0  1  2]
+ [10 12 13]]
+[[100 101 102]
+ [110 112 113]]</code></pre><p>关于numpy的更多用法参考<a href="https://www.numpy.org.cn/">numpy中文文档</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</div><div class="article-tags size-small is-uppercase mb-4"><i class="fas fa-tags has-text-grey"></i> <a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://liul12138.github.io/2020/05/02/%E5%88%9D%E8%AF%86numpy/">初识numpy</a></li><li><strong>本文作者：</strong><a href="http://liul12138.github.io">mingliu</a></li><li><strong>本文链接：</strong><a href="http://liul12138.github.io/2020/05/02/%E5%88%9D%E8%AF%86numpy/">http://liul12138.github.io/2020/05/02/初识numpy/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li></ul><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/" target="_blank">JavaScript中的高阶函数</a><br></span><span>  2.<a class="is-size-6" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/" target="_blank">django学习(1)-简介</a><br></span><span>  3.<a class="is-size-6" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/" target="_blank">django学习(2)-模型module</a><br></span><span>  4.<a class="is-size-6" href="/2020/05/02/%E5%88%9D%E8%AF%86numpy/" target="_blank">初识numpy</a><br></span></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/zhifubao.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/weixin.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/"><span class="level-item">django学习(2)-模型module</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css"><script src="/js/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: '20dcf689e428ed46a47522fa86be5f34',
+            repo: 'gittalk',
+            owner: 'liul12138',
+            clientID: '101dfba7cff3d5f55d0a',
+            clientSecret: '9e52fecc777117fa6ade0a02fa591a068c3ce598',
+            admin: ["liul12138"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget toc-scroll" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><ul class="menu-list"><li><a class="is-flex" id="toc-item-生成指定维数的随机多为数据" href="#生成指定维数的随机多为数据"><span>生成指定维数的随机多为数据</span></a></li><li><a class="is-flex" id="toc-item-生成指定维度大小（3行4列）的随机多维整型数据（二维），randint-可以指定区间（-1-5）" href="#生成指定维度大小（3行4列）的随机多维整型数据（二维），randint-可以指定区间（-1-5）"><span>生成指定维度大小（3行4列）的随机多维整型数据（二维），randint()可以指定区间（-1, 5）</span></a></li></ul><li><a class="is-flex" id="toc-item-ndarray的数据创建" href="#ndarray的数据创建"><span>ndarray的数据创建</span></a><ul class="menu-list"><li><a class="is-flex" id="toc-item-其他常用的命令" href="#其他常用的命令"><span>其他常用的命令</span></a></li></ul></li></ul></div></div><script type="text/javascript" async>
+        $(document).ready(function () { //参考自 https://github.com/ppoffice/hexo-theme-icarus/pull/616/files
+            var observerTopMargin;
+            var scrollObserver;
+            var headerElems = $(".headerlink");
+            var activeTocItem;
+        
+            function initIntersectionObserver(docHeight) {
+                observerTopMargin = docHeight;
+                scrollObserver = new IntersectionObserver(scrollCallBack,
+                    {
+                        root: null,  // viewpoint
+                        rootMargin: docHeight + "px 0px -80% 0px"  // cover top 30% of viewport to the top of document
+                    })
+            }
+        
+            function scrollCallBack(entries, observer) {
+                if ($(window).scrollTop() > observerTopMargin * 0.7) { 
+                    // User somehow scroll to 70% of observerTopMargin (which is inited as 200% document height)
+                    // Observer top margin need to extend to cover all the space to the top of the document
+                    initIntersectionObserver(observerTopMargin * 2)
+                    observer.disconnect();
+                    return;
+                }
+                let toActive;
+                if (entries[0].intersectionRatio == 1) {  // enter viewed area
+                    let entry = entries.reduce((u, v) => (u.target.toc_id > v.target.toc_id ? u : v));  // get the lowest item
+                    toActive = $("#toc-item-" + $(entry.target).attr("href").substr(1));
+                } else {
+                    let entry = entries.reduce((u, v) => (u.target.toc_id < v.target.toc_id ? u : v));  // get the highest item
+                    let idx = Math.max(entry.target.toc_id - 1, 0);
+                    toActive = $("#toc-item-" + $(headerElems[idx]).attr("href").substr(1));
+                }
+                if (activeTocItem) activeTocItem.removeClass("is-current");
+                activeTocItem = toActive
+                activeTocItem.addClass("is-current");
+            }
+        
+            initIntersectionObserver($(document).height() * 2);
+            headerElems.each(function (index, obj) {
+                obj.toc_id = index;
+                scrollObserver.observe(obj);
+            })
+        });</script></div><div class="card widget"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="is-rounded" src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/18e42cfae018ddb081318837f7640c3c.png" alt="Ming Liu"></figure><p class="title is-size-4 is-block line-height-inherit">Ming Liu</p><p class="is-size-6 is-block">EE Student (UESTC)</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chengdu Sichuan</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.zhihu.com/people/liu-liu-liu-12138-20" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/liul12138"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/5286437859"><i class="fab  fa-weibo"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="知乎" href="https://www.zhihu.com/people/liu-liu-liu-12138-20"><i class="fab fa-wpforms"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="QQ" href="https://telegram.com"><i class="fab  fa-qq"></i></a><a class="level-item button is-transparent is-white is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><a class="media-left" href="/2020/05/02/%E5%88%9D%E8%AF%86numpy/"><p class="image is-64x64"><img class="thumbnail" src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/02/c00730f424f68925e4cc23ef05351205.png" alt="初识numpy"></p></a><div class="media-content size-small"><p><time dateTime="2020-05-02T08:25:53.000Z">2020-05-02</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/02/%E5%88%9D%E8%AF%86numpy/">初识numpy</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/python-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">python 机器学习</a></p></div></article><article class="media"><a class="media-left" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/"><p class="image is-64x64"><img class="thumbnail" src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/05/01/186f9d1c552515b0a5d5e42b66a6bd97.png" alt="django学习(2)-模型module"></p></a><div class="media-content size-small"><p><time dateTime="2020-05-01T00:15:12.000Z">2020-05-01</time></p><p class="title is-6"><a class="link-muted" href="/2020/05/01/django%E5%AD%A6%E4%B9%A0-2-%E6%A8%A1%E5%9E%8Bmodel/">django学习(2)-模型module</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/python/">python</a></p></div></article><article class="media"><a class="media-left" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/"><p class="image is-64x64"><img class="thumbnail" src="/images/thumbnail2.jpg" alt="django学习(1)-简介"></p></a><div class="media-content size-small"><p><time dateTime="2020-04-30T09:32:57.000Z">2020-04-30</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/30/django%E5%AD%A6%E4%B9%A0-1-%E7%AE%80%E4%BB%8B/">django学习(1)-简介</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/python/">python</a></p></div></article><article class="media"><a class="media-left" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"><p class="image is-64x64"><img class="thumbnail" src="/images/thumbnail1.jpg" alt="JavaScript中的高阶函数"></p></a><div class="media-content size-small"><p><time dateTime="2020-04-30T05:17:19.000Z">2020-04-30</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/30/JavaScript%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/">JavaScript中的高阶函数</a></p><p class="is-uppercase"><i class="fas fa-folder-open has-text-grey"> </i><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content size-small"><p><time dateTime="2020-04-29T04:19:04.000Z">2020-04-29</time></p><p class="title is-6"><a class="link-muted" href="/2020/04/29/my-blog/">my_blog</a></p><p class="is-uppercase"></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/python/"><span class="level-start"><span class="level-item">python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/python-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="level-start"><span class="level-item">python 机器学习</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">前端</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/django/"><span class="tag">django</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/javascript/"><span class="tag">javascript</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"><span class="tag">数据分析</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://cdn.jsdelivr.net/gh/chch455/tuchuang/2020/04/30/253fcdc7d85d2f828406ba4ad35db96f.png" alt="AlwaysOnliner" height="28"></a><p class="size-small"><span>&copy; 2020 mingliu</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a><br>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br>    方便于网友与自己学习交流，如有侵权,请联系处理处理]<br><script type="text/javascript" src="/js/statistics.js"></script><span id="statistic-times"></span><br></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://liul12138.github.io',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back-to-top.js" defer></script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script src="/js/gallery.js" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/js/comment-issue-data.js" defer></script><link rel="stylesheet" href="/css/insight.css"><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"></div></div></div></div><script>(function (window) {
+            var INSIGHT_CONFIG = {
+                TRANSLATION: {
+                    POSTS: '文章',
+                    PAGES: '页面',
+                    CATEGORIES: '分类',
+                    TAGS: '标签',
+                    UNTITLED: '(无标题)',
+                },
+                CONTENT_URL: '/content.json',
+            };
+            window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+        })(window);</script><script src="/js/insight.js" defer></script></body></html>
